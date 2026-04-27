@@ -21,13 +21,6 @@
 
 
 
-(define nvim-config-source
-  (computed-file "kickstart-nvim"
-    #~(begin
-        (use-modules (guix build utils))
-        (mkdir #$output)
-        (invoke #$(file-append git "/bin/git") "clone"
-                "https://github.com/i3ima/kickstart.nvim.git" #$output))))
 
 
 
