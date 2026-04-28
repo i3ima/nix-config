@@ -8,15 +8,32 @@
 
 (use-modules (gnu home)
 	     (gnu packages)
-	     (gnu packages shells)
-	     (gnu packages vim)
-	     (gnu packages version-control)
-	     (gnu services)
-	     (guix gexp)
-	     (guix build utils)
-	     (gnu home services)
-	     (gnu home services shells)
-	     (gnu home services dotfiles))
+			 (gnu packages base)
+			 (gnu packages cmake)
+			 (gnu packages guile)
+			 (gnu packages guile-xyz)
+			 (gnu packages erlang)
+			 (gnu packages less)
+			 (gnu packages llvm)
+			 (gnu packages man)
+			 (gnu packages networking)
+			 (gnu packages ninja)
+			 (gnu packages nss)
+			 (gnu packages rust-apps)
+			 (gnu packages shells)
+			 (gnu packages texinfo)
+			 (gnu packages tmux)
+			 (gnu packages tree-sitter)
+			 (gnu packages vim)
+			 (gnu packages version-control)
+			 (gnu services)
+			 (guix base32)
+			 (guix packages)
+			 (guix utils)
+			 (guix git-download)
+			 (guix gexp)
+			 (gnu home services)
+			 (gnu home services shells))
 
 
 
@@ -70,26 +87,31 @@
 (home-environment
   ;; Below is the list of packages that will show up in your
   ;; Home profile, under ~/.guix-home/profile.
-  (packages (specifications->packages (list "nss-certs"
-					    "zoxide"
-					    "tmux"
-					    "man-pages"
-					    "neovim"
-					    "git"
-					    "mtr"
-					    "glibc-locales"
-					    "less"
-					    "bat"
-					    "zsh"
-					    "clang"
-					    "ninja"
-					    "cmake"
-					    "guile-colorized"
-					    "guile-readline"
-					    "guile"
-					    "texinfo"
-					    "vim"
-					    "make")))
+  (packages (list rebar3-no-wx
+                  nss-certs
+                  zoxide
+                  tmux
+                  man-pages
+                  neovim
+                  git
+                  mtr
+                  glibc-locales
+                  less
+                  bat
+                  zsh
+                  clang
+                  ninja
+                  tree-sitter-cli
+                  node-22
+                  python-3.10
+                  python-pip-25
+                  cmake
+                  guile-colorized
+                  guile-readline
+                  guile-3.0
+                  texinfo
+                  vim
+                  gnu-make))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
