@@ -95,22 +95,18 @@
   ;; services, run 'guix home search KEYWORD' in a terminal.
   (services
     (append (list (service home-bash-service-type
-			   (home-bash-configuration
-			     (aliases '(("ls" . "ls --color=auto")))
-			     (bashrc (list (local-file
-					     ".bashrc"
-					     "bashrc")))
-			     (bash-logout (list (local-file
-						  ".bash_logout"
-						  "bash_logout")))))
-		  (simple-service 'simple-envs-service
-				  home-environment-variables-service-type
-				  `(("EDITOR". ,(file-append neovim "/bin/nvim"))
-				    ("SHELL" . ,(file-append zsh "/bin/bash"))
-				    ("PATH". "/home/elysium/go/bin:$PATH")
-				    ("ERL_AFLAGS" . "-kernel shell_history enabled")))
-		  (service home-dotfiles-service-type 
-			   (home-dotfiles-configuration (directories 
-							  `("./dotfiles"))))
-		  )
-	    %base-home-services)))
+                     (home-bash-configuration
+                       (guix-defaults? #t)
+                       (aliases '(("ls" . "ls --color=auto")))))
+                  (simple-service 'simple-envs-service
+                      home-environment-variables-service-type
+                      `(("EDITOR". ,(file-append neovim "/bin/nvim"))
+                        ("SHELL" . ,(file-append zsh "/bin/zsh"))
+                        ("PATH". "/home/elysium/go/bin:$PATH")
+                        ("ERL_AFLAGS" . "-kernel shell_history enabled")))
+                  (simple-service 'dotfiles-from-git
+                      home-xdg-configuration-files-service-type
+                      `(("nvim" ,(file-append dotfiles-source "/.config/nvim"))
+                        ("tmux" ,(file-append dotfiles-source "/.config/tmux"))))
+                  )
+            %base-home-services)))
