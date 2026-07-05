@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   dotfiles-source = pkgs.fetchFromGitHub {
     owner = "i3ima";
@@ -10,7 +10,7 @@ let
 in {
   home.username = "i3ima";
   home.homeDirectory = "/home/i3ima";
-  home.stateVersion = "26.05";
+  home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
 
@@ -71,7 +71,6 @@ in {
       vim = "nvim";
     };
     initContent = ''
-      eval "$(dircolors -b)"
       short_pwd() {
         local p="''${PWD/#$HOME/~}"
         if [[ "$p" == "/" || "$p" == "~" ]]; then

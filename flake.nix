@@ -12,13 +12,16 @@
 
   outputs = { nixpkgs, home-manager, ... }:
   let
-    username = "nix-dev";
+    username = "i3ima";
     system = "aarch64-linux";
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ ];
+        overlays = [
+          (import ./overlays/erlang.nix)
+          (import ./overlays/freeswitch.nix)
+        ];
       };
       modules = [ ./home.nix ];
     };
