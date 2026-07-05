@@ -24,6 +24,8 @@ in {
     man-pages
     mtr
     neovim
+    zsh-fzf-history-search
+    zsh-fzf-tab
     ninja
     nodejs_22
     nssTools
@@ -61,6 +63,7 @@ in {
     history = {
       size = 50000;
       save = 50000;
+      path = "\${HOME}/.zsh_history";
       ignoreDups = true;
     };
     shellAliases = {
@@ -89,6 +92,10 @@ in {
       }
 
       precmd_functions+=(build_prompt)
+
+      [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+
+      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
   };
 
@@ -113,3 +120,4 @@ in {
     "tmux".source = "${dotfiles-source}/.config/tmux";
   };
 }
+
