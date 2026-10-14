@@ -24,18 +24,17 @@ in {
     man-pages
     mtr
     neovim
-    zsh-fzf-history-search
-    zsh-fzf-tab
     ninja
     nodejs_22
     nssTools
     python312
+    freeswitch
     python312Packages.pip
     texinfo
     tmux
     tree-sitter
     vim
-    zsh
+    # zsh
   ];
 
   home.sessionVariables = {
@@ -57,9 +56,6 @@ in {
   programs.zsh = {
     enable = true;
     defaultKeymap = "viins";
-    syntaxHighlighting.enable = true;
-    autosuggestion.enable = true;
-    enableCompletion = true;
     history = {
       size = 50000;
       save = 50000;
@@ -84,11 +80,11 @@ in {
       }
 
       build_prompt() {
-        if [[ -n "$IN_NIX_SHELL" ]]; then
-          PROMPT='%F{blue}user@host%f: %2~ [nix] $ '
-        else
-          PROMPT='%F{magenta}user@host%f: %2~ $ '
-        fi
+       if [[ -n "$IN_NIX_SHELL" ]]; then
+         PROMPT='%F{blue}user@host%f: %2~ [nix] $ '
+       else
+         PROMPT='%F{magenta}user@host%f: %2~ $ '
+       fi
       }
 
       precmd_functions+=(build_prompt)
@@ -107,8 +103,6 @@ in {
   programs.git = {
     enable = true;
     settings = {
-      user.name = "i3ima";
-      user.email = "3b6e08@proton.me";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       core.editor = "nvim";

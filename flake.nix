@@ -14,6 +14,9 @@
   let
     username = "i3ima";
     system = "aarch64-linux";
+    identityFile = "${builtins.getEnv "HOME"}/.config/nix-identity.nix";
+    identityModule =
+      if builtins.pathExists identityFile then [ identityFile ] else [ ];
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
@@ -23,7 +26,7 @@
           (import ./overlays/freeswitch.nix)
         ];
       };
-      modules = [ ./home.nix ];
+      modules = [ ./home.nix ] ++ identityModule;
     };
   };
 }
